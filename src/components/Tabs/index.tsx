@@ -21,6 +21,7 @@ const Menu = () => {
         },
       }}
     >
+      <Tab label="Всё" />
       <Tab label="Восточная кухня" />
       <Tab label="Европейская кухня" />
       <Tab label="Супы" />
