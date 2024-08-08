@@ -24,6 +24,7 @@ function App() {
     console.log(tg?.initDataUnsafe?.user);
     tg.ready();
   }, []);
+
   return (
     <div
       style={{
@@ -34,10 +35,19 @@ function App() {
       }}
     >
       <div style={{ flex: 1, overflowY: "auto" }}>
-        <Typography marginBottom={1.5} align="center" color="black">
-          Привет {user?.first_name}! 👋🏻
-        </Typography>
-        <Menu />
+        <div
+          style={{
+            position: "sticky",
+            top: 0,
+            backgroundColor: "white",
+            zIndex: 1000,
+          }}
+        >
+          <Typography marginBottom={1.5} align="center" color="black">
+            Привет {user?.first_name}! 👋🏻
+          </Typography>
+          <Menu />
+        </div>
         <Cards>
           <Card title="Босо лагман | 450 гр" price="100" />
           <Card title="Босо лагман | 450 гр" price="100" />
@@ -45,31 +55,35 @@ function App() {
           <Card title="Босо лагман | 450 гр" price="100" />
         </Cards>
       </div>
-      <div>
-        <BottomNavigation
-          showLabels
-          value={nav}
-          onChange={(event, newValue) => {
-            if (newValue === 2) {
-              onClose();
-            }
+      <BottomNavigation
+        showLabels
+        value={nav}
+        onChange={(event, newValue) => {
+          if (newValue === 2) {
+            onClose();
+          }
 
-            event.stopPropagation();
-            setNav(newValue);
-          }}
-        >
-          <BottomNavigationAction
-            label="Корзина"
-            icon={
-              <Badge color="primary" badgeContent={totalCount}>
-                <ShoppingBasketIcon />
-              </Badge>
-            }
-          />
-          <BottomNavigationAction label="Избранные" icon={<FavoriteIcon />} />
-          <BottomNavigationAction label="Выход" icon={<ExitToAppIcon />} />
-        </BottomNavigation>
-      </div>
+          event.stopPropagation();
+          setNav(newValue);
+        }}
+        style={{
+          position: "fixed",
+          bottom: 0,
+          left: 0,
+          right: 0,
+        }}
+      >
+        <BottomNavigationAction
+          label="Корзина"
+          icon={
+            <Badge color="primary" badgeContent={totalCount}>
+              <ShoppingBasketIcon />
+            </Badge>
+          }
+        />
+        <BottomNavigationAction label="Избранные" icon={<FavoriteIcon />} />
+        <BottomNavigationAction label="Выход" icon={<ExitToAppIcon />} />
+      </BottomNavigation>
     </div>
   );
 }
@@ -80,4 +94,6 @@ const Cards = styled("div")`
   display: flex;
   gap: 15px;
   flex-wrap: wrap;
+  margin: 20px 0;
+  padding-bottom: 60px;
 `;

@@ -38,6 +38,6 @@ const Flexer = styled("div")`
   justify-content: space-between;
 `;
 const Img = styled("img")`
-  max-width: 400px;
+  max-width: 380px;
   border-radius: 10px;
 `;
