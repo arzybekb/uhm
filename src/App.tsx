@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { Tab } from "@mui/material";
+import { Badge, Tab } from "@mui/material";
 import "./App.css";
 import { useEffect, useState } from "react";
 import Tabs, { tabsClasses } from "@mui/material/Tabs";
 import { Typography } from "@mui/material";
 import { BottomNavigation } from "@mui/material";
 import { BottomNavigationAction } from "@mui/material";
-import RestoreIcon from "@mui/icons-material/Restore";
+import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 
@@ -25,6 +25,7 @@ function App() {
     tg.close();
   };
   useEffect(() => {
+    console.log(tg?.initDataUnsafe?.user);
     tg.ready();
   }, []);
   return (
@@ -38,7 +39,7 @@ function App() {
     >
       <div>
         <Typography align="center" color="black">
-          Hi {tg?.initDataUnsafe?.user?.username}
+          Привет {tg?.initDataUnsafe?.user?.first_name}! 👋🏻
         </Typography>
         <Tabs
           value={value}
@@ -51,13 +52,13 @@ function App() {
             },
           }}
         >
-          <Tab label="Item One" />
-          <Tab label="Item Two" />
-          <Tab label="Item Three" />
-          <Tab label="Item Four" />
-          <Tab label="Item Five" />
-          <Tab label="Item Six" />
-          <Tab label="Item Seven" />
+          <Tab label="Восточная кухня" />
+          <Tab label="Европейская кухня" />
+          <Tab label="Супы" />
+          <Tab label="Салаты" />
+          <Tab label="Завтраки" />
+          <Tab label="Напитки" />
+          <Tab label="Cендвичи" />
         </Tabs>
       </div>
       <div>
@@ -73,7 +74,14 @@ function App() {
             setNav(newValue);
           }}
         >
-          <BottomNavigationAction label="Recents" icon={<RestoreIcon />} />
+          <BottomNavigationAction
+            label="Корзина"
+            icon={
+              <Badge color="primary" badgeContent={value}>
+                <ShoppingBasketIcon />
+              </Badge>
+            }
+          />
           <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
           <BottomNavigationAction label="Exit" icon={<ExitToAppIcon />} />
         </BottomNavigation>
