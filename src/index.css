@@ -13,6 +13,6 @@
   -moz-osx-font-smoothing: grayscale;
 }
 body {
-  background-color: var(--tg-theme-bg-color);
-  color: var(--tg-theme-text-color);
+  /* background-color: var(--tg-theme-bg-color);
+  color: var(--tg-theme-text-color); */
 }
