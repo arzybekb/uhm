@@ -90,7 +90,7 @@ const Home = () => {
           label="Корзина"
           icon={
             <Count color="error" badgeContent={totalCount}>
-              <ShoppingBasketIcon color="primary" />
+              <ShoppingBasketIcon />
             </Count>
           }
         />
