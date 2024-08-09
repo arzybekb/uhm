@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { Badge, Button, styled } from "@mui/material";
 import "./App.css";
@@ -20,16 +21,11 @@ function App() {
   const [nav, setNav] = useState(0);
   const totalCount = useAppSelector((state) => state.counter.value);
 
-  const handleRequestContact = async () => {
-    // Make a request to your backend to trigger the Telegram bot
-    const response = await fetch("/api/request-contact", {
-      method: "POST",
+  const handlePhone = () => {
+    // @ts-ignore
+    tg.requestContact((test: any) => {
+      console.log(test);
     });
-    if (response.ok) {
-      alert("Check your Telegram app to share your contact!");
-    } else {
-      alert("Failed to request contact information.");
-    }
   };
 
   useEffect(() => {
@@ -58,7 +54,7 @@ function App() {
           <Typography marginBottom={1.5} align="center" color="black">
             Привет {user?.first_name}! 👋🏻
           </Typography>
-          <Button onClick={handleRequestContact}>PHONE</Button>
+          <Button onClick={handlePhone}>PHONE</Button>
           <Menu />
         </div>
         <Cards>
