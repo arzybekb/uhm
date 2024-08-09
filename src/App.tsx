@@ -25,6 +25,9 @@ function App() {
   const handlePhone = () => {
     // @ts-ignore
     tg.requestContact((test: any) => {
+      console.log("==================");
+      console.log(test);
+      console.log("==================");
       settest(test);
     });
   };
@@ -58,7 +61,9 @@ function App() {
           <Button onClick={handlePhone}>PHONE</Button>
           <Menu />
         </div>
-        <Typography variant="h2" color="black">Телефон: {test}</Typography>
+        <Typography variant="h2" color="black">
+          Телефон: {test}
+        </Typography>
         <Cards>
           <Card title="Босо лагман | 450 гр" price="100" />
           <Card title="Босо лагман | 450 гр" price="100" />
