@@ -107,6 +107,7 @@ const Cards = styled("div")`
   gap: 15px;
   flex-wrap: wrap;
   margin: 20px 0;
+  padding-bottom: 60px;
 `;
 const Navigator = styled(BottomNavigationAction)`
   .Mui-selected {
