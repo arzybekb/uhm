@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { Badge, styled } from "@mui/material";
+import { Badge, Button, styled } from "@mui/material";
 import "./App.css";
 import { useEffect, useState } from "react";
 import { Typography } from "@mui/material";
@@ -19,6 +19,18 @@ function App() {
   const { onClose, user } = useTelegram();
   const [nav, setNav] = useState(0);
   const totalCount = useAppSelector((state) => state.counter.value);
+
+  const handleRequestContact = async () => {
+    // Make a request to your backend to trigger the Telegram bot
+    const response = await fetch("/api/request-contact", {
+      method: "POST",
+    });
+    if (response.ok) {
+      alert("Check your Telegram app to share your contact!");
+    } else {
+      alert("Failed to request contact information.");
+    }
+  };
 
   useEffect(() => {
     console.log(tg?.initDataUnsafe?.user);
@@ -46,6 +58,7 @@ function App() {
           <Typography marginBottom={1.5} align="center" color="black">
             Привет {user?.first_name}! 👋🏻
           </Typography>
+          <Button onClick={handleRequestContact}>PHONE</Button>
           <Menu />
         </div>
         <Cards>
