@@ -19,12 +19,13 @@ function App() {
   const tg = window.Telegram.WebApp;
   const { onClose, user } = useTelegram();
   const [nav, setNav] = useState(0);
+  const [test, settest] = useState(0);
   const totalCount = useAppSelector((state) => state.counter.value);
 
   const handlePhone = () => {
     // @ts-ignore
     tg.requestContact((test: any) => {
-      console.log(test);
+      settest(test);
     });
   };
 
@@ -42,6 +43,7 @@ function App() {
         height: "100vh",
       }}
     >
+      <p>{test}</p>
       <div style={{ flex: 1, overflowY: "auto" }}>
         <div
           style={{
