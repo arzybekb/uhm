@@ -1,6 +1,6 @@
-import { Tab } from "@mui/material";
+import { styled, Tab } from "@mui/material";
 import { useState } from "react";
-import Tabs, { tabsClasses } from "@mui/material/Tabs";
+import Tabs from "@mui/material/Tabs";
 
 const Menu = () => {
   const [value, setValue] = useState(0);
@@ -9,27 +9,45 @@ const Menu = () => {
     event.stopPropagation();
     setValue(newValue);
   };
+
   return (
     <Tabs
       value={value}
       onChange={handleChange}
       variant="scrollable"
       scrollButtons
-      sx={{
-        [`& .${tabsClasses.scrollButtons}`]: {
-          "&.Mui-disabled": { opacity: 0.3 },
+      TabIndicatorProps={{
+        sx: {
+          backgroundColor: "#000",
         },
       }}
     >
-      <Tab label="Всё" />
-      <Tab label="Восточная кухня" />
-      <Tab label="Европейская кухня" />
-      <Tab label="Супы" />
-      <Tab label="Салаты" />
-      <Tab label="Завтраки" />
-      <Tab label="Напитки" />
-      <Tab label="Cендвичи" />
+      {[
+        "Всё",
+        "Восточная кухня",
+        "Европейская кухня",
+        "Супы",
+        "Салаты",
+        "Завтраки",
+        "Напитки",
+        "Cендвичи",
+      ].map((label, index) => (
+        <StyledTab
+          key={index}
+          sx={{
+            textTransform: "none",
+          }}
+          label={label}
+        />
+      ))}
     </Tabs>
   );
 };
+
 export default Menu;
+
+const StyledTab = styled(Tab)`
+  &.Mui-selected {
+    color: #000;
+  }
+`;
