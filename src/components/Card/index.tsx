@@ -1,26 +1,36 @@
 import { IconButton, Paper, styled, Typography } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import { useAppDispatch } from "../../hooks/redux";
-import { increment } from "../../store/counterSlice";
+import { increment, setOrder } from "../../store/basketSlice";
 const Card = ({
   title,
   price,
   url,
+  handleDrawer,
 }: {
   title: string;
   price: string;
   url: string;
+  handleDrawer: (val: boolean) => void;
 }) => {
   const dispatch = useAppDispatch();
+
   const hanleChange = () => {
     dispatch(increment());
   };
+  const handleOrder = () => {
+    handleDrawer(true);
+    dispatch(
+      setOrder({
+        title,
+        price,
+        url,
+      })
+    );
+  };
   return (
-    <StyledCard>
-      <Img
-        src={url}
-        alt="meal"
-      />
+    <StyledCard onClick={handleOrder}>
+      <Img src={url} alt="meal" />
       <Flexer>
         <div>
           <Typography fontWeight={600} variant="h6" sx={{ fontSize: "18px" }}>
@@ -31,7 +41,10 @@ const Card = ({
             <IconButton
               color="inherit"
               sx={{ alignSelf: "start" }}
-              onClick={hanleChange}
+              onClick={(e) => {
+                e.stopPropagation();
+                hanleChange();
+              }}
             >
               <AddIcon />
             </IconButton>
